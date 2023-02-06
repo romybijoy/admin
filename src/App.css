@@ -1,0 +1,88 @@
+*{
+  text-decoration: none !important;
+}
+
+.sideContainer{
+  display: flex;
+}
+
+.main{
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.sidebar{
+  background-color: black;
+  color: white;
+  height: 100vh;
+}
+.logo{
+  color: white;
+  font-size: 30px;
+}
+
+.top_section{
+display: flex;
+align-items: center;
+padding: 20px 15px;
+}
+.bars{
+  display: flex;
+  font-size: 25px;
+  margin-left: 30px;
+}
+
+.nav{
+  display: flex;
+  color: white;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+.nav:hover{
+background-color: lightskyblue;
+color: #000;
+transition: all 0.5s;
+}
+.active{
+  background-color: lightskyblue;
+  color: #000;
+  }
+
+  .icon, .link_text{
+    font-size: 20px;
+  }
+
+  .images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image {
+    margin: 1rem 0.5rem;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  }
+  
+  .image button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    border: none;
+    color: black;
+    background-color: whitesmoke;
+  }
+  
+  .image button:hover {
+    background-color: rgb(76, 179, 243);
+  }
+  
+  .image p {
+    padding: 0 0.5rem;
+    margin: 0;
+  }
+  
