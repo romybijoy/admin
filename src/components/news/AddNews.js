@@ -394,7 +394,7 @@ class AddNews extends Component {
                           <Form.Control
                             type="file"
                             onChange={this.onSelectFile}
-                            accept=".png, .jpg, .jpeg, .pdf"
+                            accept=".png, .jpg, .jpeg"
                             multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>

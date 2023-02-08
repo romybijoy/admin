@@ -345,7 +345,6 @@ class AddEvents extends Component {
                             type="file"
                             onChange={this.fileChangedHandler}
                             accept=".png, .jpg, .jpeg"
-                            multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>
                             {this.state.fileError}
@@ -429,8 +428,7 @@ class AddEvents extends Component {
                           <Form.Control
                             type="file"
                             onChange={this.onSelectFile}
-                            accept=".png, .jpg, .jpeg, .pdf"
-                            multiple
+                            accept=".png, .jpg, .jpeg"
                           />
                           <div className="errStyle" style={{ color: "red" }}>
                             {this.state.fileError}

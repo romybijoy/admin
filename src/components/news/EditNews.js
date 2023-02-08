@@ -210,6 +210,15 @@ class EditNews extends Component {
     URL.revokeObjectURL(image);
   };
 
+  deleteExistImgHandler = (image) => {
+    this.setState({
+       value: {...this.state.value,
+          news_image: this.state.value.news_image.filter((e) => e !== image),
+      },
+      multiImgName: this.state.multiImgName.filter((e) => e !== image),
+    });
+  };
+
   deleteSingleHandler = (image) => {
     URL.revokeObjectURL(image);
   };
@@ -237,6 +246,7 @@ class EditNews extends Component {
       data.publish !== "" &&
       this.state.multiImgName !== ""
     ) {
+
       NewsService.editNews(this.state.value, this.state.multiImgName);
 
       this.setState({
@@ -425,7 +435,7 @@ class EditNews extends Component {
                           <Form.Control
                             type="file"
                             onChange={this.onSelectFile}
-                            accept=".png, .jpg, .jpeg, .pdf"
+                            accept=".png, .jpg, .jpeg"
                             multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>
@@ -434,7 +444,7 @@ class EditNews extends Component {
                         </Form.Group>
                       </div>
                       <div className="images">
-                        {this.state.value &&
+                        {
                         this.state.value.news_image !== null
                           ? this.state.value.news_image.map((image, index) => {
                               return (
@@ -446,6 +456,12 @@ class EditNews extends Component {
                                     height="100"
                                     alt=""
                                   />
+                                   <button
+                                  style={{ width: "10px", padding: 0 }}
+                                  onClick={() => this.deleteExistImgHandler(image)}
+                                >
+                                  x
+                                </button>
                                 </div>
                               );
                             })

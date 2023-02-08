@@ -209,7 +209,14 @@ class EditEvents extends Component {
     });
     URL.revokeObjectURL(image);
   };
-
+  deleteExistImgHandler = (image) => {
+    this.setState({
+       value: {...this.state.value,
+        events_image: this.state.value.events_image.filter((e) => e !== image),
+      },
+      multiImgName: this.state.multiImgName.filter((e) => e !== image),
+    });
+  };
   deleteSingleHandler = (image) => {
     URL.revokeObjectURL(image);
   };
@@ -458,7 +465,7 @@ class EditEvents extends Component {
                           <Form.Control
                             type="file"
                             onChange={this.onSelectFile}
-                            accept=".png, .jpg, .jpeg, .pdf"
+                            accept=".png, .jpg, .jpeg"
                             multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>
@@ -481,6 +488,12 @@ class EditEvents extends Component {
                                       height="100"
                                       alt=""
                                     />
+                                    <button
+                                  style={{ width: "10px", padding: 0 }}
+                                  onClick={() => this.deleteExistImgHandler(image)}
+                                >
+                                  x
+                                </button>
                                   </div>
                                 );
                               }

@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { appConfig } from "../config";
 
 class NewsService {
-
   retriveAllNews() {
     return axios.post(`${appConfig.ip}/testGetNews`);
   }
@@ -40,13 +39,11 @@ class NewsService {
   }
 
   editNews(news, name) {
-    const date = moment(new Date()).format("DD/MM/yyyy");
 
     const data = {
       id: news.id,
       title: news.title,
       description: news.description,
-      date_added: date,
       search_tags: news.search_tags,
       featured_image: news.imgUrl ? news.imgUrl.name : news.featured_image,
       news_image: name,

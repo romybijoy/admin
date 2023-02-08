@@ -43,15 +43,12 @@ class EventsService {
   editEvents(events, name) {
     console.log(events);
 
-    const date = moment(new Date()).format("DD/MM/yyyy");
-
     const data = {
       id: events.id,
       title: events.title,
       full_descripton: events.full_descripton,
       short_descripton: events.short_descripton,
       location: events.location,
-      date_added: date,
       search_tags: events.search_tags,
       featured_image: events.imgUrl
         ? events.imgUrl.name
