@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Button,
-  Modal,
-  Container,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Button, Modal, Container, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Multiselect from "multiselect-react-dropdown";
@@ -16,7 +9,31 @@ class EditEvents extends Component {
   constructor(props) {
     super(props);
     let search_tags = [];
-    this.props.ItemList.search_tags.map((e) => search_tags.push({name: e}));
+    let options = [
+      { name: "murder" },
+      { name: "agri" },
+      { name: "flower" },
+      { name: "farmer" },
+      { name: "money" },
+      { name: "tax" },
+      { name: "cinema" },
+      { name: "film" },
+      { name: "dress" },
+      { name: "ornaments" },
+      { name: "electronics" },
+      { name: "sports" },
+      { name: "school" },
+      { name: "exam" },
+      { name: "ness" },
+      { name: "iopoiop" },
+    ];
+
+    if (this.props.ItemList !== null) {
+      this.props.ItemList.search_tags.map((e) => {
+        search_tags.push({ name: e });
+        options.push({ name: e });
+      });
+    }
     this.state = {
       value: {
         id: this.props.ItemList ? this.props.ItemList._id : null,
@@ -48,26 +65,8 @@ class EditEvents extends Component {
       multiImgName: this.props.ItemList ? this.props.ItemList.events_image : [],
       selectedValues: search_tags,
       selectedImages: [],
-      options: [
-        { name: "murder", id: 1 },
-        { name: "agri", id: 2 },
-        { name: "flower", id: 3 },
-        { name: "farmer", id: 4 },
-        { name: "money", id: 5 },
-        { name: "tax", id: 6 },
-        { name: "cinema", id: 7 },
-        { name: "film", id: 8 },
-        { name: "dress", id: 9 },
-        { name: "ornaments", id: 10 },
-        { name: "electronics", id: 11 },
-        { name: "sports", id: 12 },
-        { name: "school", id: 13 },
-        { name: "exam", id: 14 },
-        { name: "ness", id: 15 },
-        { name: "iopoiop", id: 16 },
-      ],
+      options: options,
     };
-
   }
 
   onSelectFile = (event) => {
@@ -211,7 +210,8 @@ class EditEvents extends Component {
   };
   deleteExistImgHandler = (image) => {
     this.setState({
-       value: {...this.state.value,
+      value: {
+        ...this.state.value,
         events_image: this.state.value.events_image.filter((e) => e !== image),
       },
       multiImgName: this.state.multiImgName.filter((e) => e !== image),
@@ -246,8 +246,8 @@ class EditEvents extends Component {
       data.publish !== "" &&
       this.state.multiImgName !== ""
     ) {
-      EventsService.editEvents(this.state.value, this.state.multiImgName);
-
+      // EventsService.editEvents(this.state.value, this.state.multiImgName);
+      this.props.editEvents(data, this.state.multiImgName);
       this.setState({
         value: {
           title: "",
@@ -489,11 +489,13 @@ class EditEvents extends Component {
                                       alt=""
                                     />
                                     <button
-                                  style={{ width: "10px", padding: 0 }}
-                                  onClick={() => this.deleteExistImgHandler(image)}
-                                >
-                                  x
-                                </button>
+                                      style={{ width: "10px", padding: 0 }}
+                                      onClick={() =>
+                                        this.deleteExistImgHandler(image)
+                                      }
+                                    >
+                                      x
+                                    </button>
                                   </div>
                                 );
                               }

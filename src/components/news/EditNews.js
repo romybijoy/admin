@@ -247,8 +247,9 @@ class EditNews extends Component {
       this.state.multiImgName !== ""
     ) {
 
-      NewsService.editNews(this.state.value, this.state.multiImgName);
+      // NewsService.editNews(this.state.value, this.state.multiImgName);
 
+      this.props.editNews(data, this.state.multiImgName);
       this.setState({
         value: {
           title: "",

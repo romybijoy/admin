@@ -6,9 +6,26 @@ import "react-toastify/dist/ReactToastify.css";
 import { appConfig } from "../config";
 
 class NewsService {
-  retriveAllNews() {
-    return axios.post(`${appConfig.ip}/testGetNews`);
-  }
+  retriveAllNews = async () => {
+    const response = await axios.post(`${appConfig.ip}/testGetNews`);
+    console.log('aaaa'+ response)
+    return response.data;
+  };
+
+  // retriveAllNews = async () => {
+  //   try {
+  //     const response = await fetch(`${appConfig.ip}/testGetNews`, {
+  //       method: "POST",
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       return data;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   addNews(news, name) {
     console.log(news);
@@ -48,7 +65,7 @@ class NewsService {
       featured_image: news.imgUrl ? news.imgUrl.name : news.featured_image,
       news_image: name,
     };
-    axios
+axios
       .post(`${appConfig.ip}/testUpdateEvent`, data)
       .then(() => {
         toast.success("News updated successfully", {

@@ -20,11 +20,14 @@ function News(props) {
   const [page, setPage] = useState("0");
 
   useEffect(() => {
-    console.log("Mountiinngggg");
 
-    NewsService.retriveAllNews().then((response) =>
-      setNewsList(response.data.news_list)
-    );
+    console.log("Mountiinngggg");
+    
+    // NewsService.retriveAllNews().then((response) =>
+    //   setNewsList(response.news_list)
+    // );
+
+    props.fetchNews();
   }, []);
 
   function handleAddNews() {
@@ -86,6 +89,7 @@ function News(props) {
                   <AddNews
                     showAddModel={showAddModel}
                     closeAddModel={closeAddModel}
+                    addNews={props.addNews}
                     ItemList={ItemList}
                   />
                 ) : null}
@@ -101,8 +105,8 @@ function News(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {NewsList &&
-                      NewsList.map((item, i) => (
+                    {props.NewsList &&
+                      props.NewsList.map((item, i) => (
                         <tr key={i}>
                           <td>{10 * (p - 1) + i + 1}</td>
 
@@ -141,6 +145,7 @@ function News(props) {
                               {showEditModel ?
                                   <EditNews
                                     showEditModel={showEditModel}
+                                    editNews={props.EditNews}
                                     closeEditModel={closeEditModel}
                                     ItemList={ItemList}
                                   />
@@ -158,7 +163,7 @@ function News(props) {
                                   showDelModel={showDelModel}
                                   closeDelModel={closeDelModel}
                                   ItemList={ItemList}
-                                  DeleteValue={props.DeleteValue}
+                                  deleteNews={props.deleteNews}
                                 />
                               ) : null}
                             </div>
@@ -167,8 +172,8 @@ function News(props) {
                       ))}
                   </tbody>
                 </Table>
-                {(NewsList === undefined ||
-                  (NewsList && NewsList.length === 0)) && <NodataMsg />}
+                {(props.NewsList === undefined ||
+                  (props.NewsList && props.NewsList.length === 0)) && <NodataMsg />}
 
                 {showViewModel ? (
                   <ViewNews

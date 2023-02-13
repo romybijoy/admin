@@ -22,9 +22,10 @@ function Events(props) {
   useEffect(() => {
     console.log("Mountiinngggg");
 
-    EventsService.retriveAllEvents().then((response) =>
-      setEventsList(response.data.event_list)
-    );
+    // EventsService.retriveAllEvents().then((response) =>
+    //   setEventsList(response.data.event_list)
+    // );
+    props.fetchEvents();
   }, []);
 
   function handleAddEvents() {
@@ -85,6 +86,7 @@ function Events(props) {
                 {showAddModel ? (
                   <AddEvents
                     showAddModel={showAddModel}
+                    addEvents={props.addEvents}
                     closeAddModel={closeAddModel}
                     ItemList={ItemList}
                   />
@@ -101,8 +103,8 @@ function Events(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {EventsList &&
-                      EventsList.map((item, i) => (
+                    {props.EventsList &&
+                      props.EventsList.map((item, i) => (
                         <tr key={i}>
                           <td>{10 * (p - 1) + i + 1}</td>
 
@@ -142,6 +144,7 @@ function Events(props) {
                                   <EditEvents
                                     showEditModel={showEditModel}
                                     closeEditModel={closeEditModel}
+                                    editEvents={props.EditEvents}
                                     ItemList={ItemList}
                                   />
                                   : null}
@@ -158,7 +161,7 @@ function Events(props) {
                                   showDelModel={showDelModel}
                                   closeDelModel={closeDelModel}
                                   ItemList={ItemList}
-                                  DeleteValue={props.DeleteValue}
+                                  deleteEvents={props.deleteEvents}
                                 />
                               ) : null}
                             </div>
@@ -167,8 +170,8 @@ function Events(props) {
                       ))}
                   </tbody>
                 </Table>
-                {(EventsList === undefined ||
-                  (EventsList && EventsList.length === 0)) && <NodataMsg />}
+                {(props.EventsList === undefined ||
+                  (props.EventsList && props.EventsList.length === 0)) && <NodataMsg />}
 
                 {showViewModel ? (
                   <ViewEvents

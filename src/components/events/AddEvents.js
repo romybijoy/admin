@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Button,
-  Modal,
-  Container,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Button, Modal, Container, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Multiselect from "multiselect-react-dropdown";
@@ -199,7 +192,7 @@ class AddEvents extends Component {
   deleteSingleHandler = (image) => {
     URL.revokeObjectURL(image);
   };
-  
+
   onRemoveHandler = (event) => {
     console.log(event);
   };
@@ -220,14 +213,14 @@ class AddEvents extends Component {
     if (
       data.title !== "" &&
       data.location !== "" &&
-      data.publish !== "" && 
+      data.publish !== "" &&
       data.short_descripton !== "" &&
       data.full_descripton !== "" &&
       this.state.multiImgName !== "" &&
       data.imgUrl !== ""
     ) {
-      EventsService.addEvents(this.state.value, this.state.multiImgName);
-
+      // EventsService.addEvents(this.state.value, this.state.multiImgName);
+      this.props.addEvents(data,this.state.multiImgName)
       this.setState({
         value: {
           title: "",
@@ -310,7 +303,9 @@ class AddEvents extends Component {
                       </div>
                       <div>
                         <Form.Group>
-                          <Form.Label className="mandatoryField">Short Descripton</Form.Label>
+                          <Form.Label className="mandatoryField">
+                            Short Descripton
+                          </Form.Label>
                           <Form.Control
                             as="textarea"
                             style={{ resize: "none" }}
@@ -324,7 +319,9 @@ class AddEvents extends Component {
                       </div>
                       <div>
                         <Form.Group>
-                          <Form.Label className="mandatoryField">Full Descripton</Form.Label>
+                          <Form.Label className="mandatoryField">
+                            Full Descripton
+                          </Form.Label>
                           <Form.Control
                             as="textarea"
                             style={{ resize: "none" }}
@@ -429,6 +426,7 @@ class AddEvents extends Component {
                             type="file"
                             onChange={this.onSelectFile}
                             accept=".png, .jpg, .jpeg"
+                            multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>
                             {this.state.fileError}

@@ -1,17 +1,14 @@
-
-
-import React from "react"
+import React from "react";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import NewsService from "../../api/NewsService";
 import "../../Common/cmnStyle.css";
 
-
 function DeleteModal(props) {
   function Submit() {
-    NewsService.deleteNewsById( props.ItemList._id)
-    
+    // NewsService.deleteNewsById( props.ItemList._id)
+    props.deleteNews(props.ItemList._id);
     props.closeDelModel();
-  };
+  }
 
   return (
     <div>
@@ -23,10 +20,7 @@ function DeleteModal(props) {
         className="detailModal"
         onHide={props.closeDelModel}
       >
-        <Modal.Header className="mastr-mdl-hd"
-
-          closeButton
-        >
+        <Modal.Header className="mastr-mdl-hd" closeButton>
           <Modal.Title>
             <span className="modl-titl-align">Delete Confirmation</span>
           </Modal.Title>
@@ -46,7 +40,7 @@ function DeleteModal(props) {
                 onClick={() => props.closeDelModel()}
               >
                 CANCEL
-                    </Button>
+              </Button>
             </Col>
             <Col xs={6} sm={6} md={6} lg={6} xl={6}>
               <Button
@@ -55,13 +49,13 @@ function DeleteModal(props) {
                 onClick={Submit}
               >
                 OK
-                    </Button>
+              </Button>
             </Col>
           </Row>
         </Modal.Body>
       </Modal>
     </div>
-  )
+  );
 }
 
 export default DeleteModal;

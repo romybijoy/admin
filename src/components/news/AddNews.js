@@ -222,8 +222,9 @@ class AddNews extends Component {
       this.state.multiImgName !== "" &&
       data.imgUrl !== ""
     ) {
-      NewsService.addNews(this.state.value, this.state.multiImgName);
+      // NewsService.addNews(this.state.value, this.state.multiImgName);
 
+      this.props.addNews(data,this.state.multiImgName)
       this.setState({
         value: {
           title: "",
@@ -323,7 +324,6 @@ class AddNews extends Component {
                             type="file"
                             onChange={this.fileChangedHandler}
                             accept=".png, .jpg, .jpeg"
-                            multiple
                           />
                           <div className="errStyle" style={{ color: "red" }}>
                             {this.state.fileError}

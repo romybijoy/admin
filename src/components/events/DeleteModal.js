@@ -8,8 +8,8 @@ import "../../Common/cmnStyle.css";
 
 function DeleteModal(props) {
   function Submit() {
-    EventsService.deleteEventsById( props.ItemList._id)
-    
+    // EventsService.deleteEventsById( props.ItemList._id)
+    props.deleteEvents(props.ItemList._id);
     props.closeDelModel();
   };
 
